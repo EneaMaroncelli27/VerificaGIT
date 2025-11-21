@@ -20,6 +20,40 @@ namespace VerificaGIT
             Indirizzo = address;
             OrarioApertura = open;
             OrarioChiusura = close;
+            ListaLibro = new List<Libro>();
+        }
+        public void NuovoLibro(Libro libro)
+        {
+            ListaLibro.Add(libro);
+            Console.WriteLine("Libro aggiunto alla libreria");
+        }
+        public string RicercaTitolo(string titoloLibro)
+        {
+            foreach(Libro libro in ListaLibro)
+            {
+                if(libro.Titolo == titoloLibro)
+                {
+                    return libro.toString();
+                }
+            }
+            return "Non è stato trovato nessun libro con questo titolo";
+           
+        }
+        public List<Libro> RicercaPerAutore(string autoreLibro)
+        {
+            List<Libro> libriAutore = new List<Libro>();
+            foreach(Libro libro in ListaLibro)
+            {
+                if(libro.Autore == autoreLibro)
+                {
+                    libriAutore.Add(libro);
+                }
+            }
+            return libriAutore;
+        }
+        public int NumeroLibri()
+        {
+            return ListaLibro.Count();
         }
 
     }
