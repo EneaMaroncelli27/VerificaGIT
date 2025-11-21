@@ -21,5 +21,23 @@ namespace VerificaGIT
             Editore = editor;
             NumeroPagine = pages;
         }
+        public string toString()
+        {
+            return "Autore: " + Autore + ", Titolo: " + Titolo + ", Anno di pubblicazione: " + AnnoDiPubblicazione.ToString() + ", Editore: " + Editore + ", Numero pagine: " + NumeroPagine.ToString(); 
+        }
+        public string readingTime()
+        {
+            if (NumeroPagine < 100)
+            {
+                return "1h";
+            } else if (NumeroPagine >= 100 && NumeroPagine <= 200) {
+                return "2h";
+            }else if (NumeroPagine > 200)
+            {
+                return "piu di 2h";
+            }
+            return "0h";
+
+        }
     }
 }
