@@ -4,8 +4,10 @@
     {
         public static void Menu()
         {
-        
-
+            Console.WriteLine("1. Vedere quanti libri ci sono in biblioteca");
+            Console.WriteLine("2. Ricercare un libro per titolo");
+            Console.WriteLine("3. Ricercare tutti i libro di un autore");
+            Console.WriteLine("4. Esci dalla gestione");
         }
         static void Main(string[] args)
         {
@@ -25,31 +27,71 @@
             int numerolibri;
             while (int.TryParse(Console.ReadLine(), out numerolibri))
             {
-                Console.WriteLine("Inserisca un valore valido\n> ");
+                Console.Write("Inserisca un valore valido\n> ");
             }
             for(int i = 0; i< numerolibri; i++)
             {
-                Console.WriteLine("Inserisca il nome del libro\n> ");
+                Console.Write("Inserisca il nome del libro\n> ");
                 string nomelibro = Console.ReadLine();
-                Console.WriteLine("Inserire il titolo del libro\n> ");
+                Console.Write("Inserire il titolo del libro\n> ");
                 string titololibro = Console.ReadLine();
                 Console.WriteLine("Inserire solo l'anno di pubblicazione\n> ");
                 int annolibro;
                 while (int.TryParse(Console.ReadLine(), out annolibro))
                 {
-                    Console.WriteLine("Inserisca un valore valido\n> ");
+                    Console.Write("Inserisca un valore valido\n> ");
                 }
-                Console.WriteLine("Inserire l'editore del libro\n> ");
+                Console.Write("Inserire l'editore del libro\n> ");
                 string editorelibro  = Console.ReadLine();
-                Console.WriteLine("Inserire quante pagine ha questo libro\n> ");
+                Console.Write("Inserire quante pagine ha questo libro\n> ");
                 int paginelibro;
                 while (int.TryParse(Console.ReadLine(), out paginelibro))
                 {
-                    Console.WriteLine("Inserisca un valore valido\n> ");
+                    Console.Write("Inserisca un valore valido\n> ");
                 }
                 Libro libro = new Libro(nomelibro,titololibro, annolibro,editorelibro,paginelibro);
+                
                 biblioteca.NuovoLibro(libro);
+                Console.WriteLine("Libro aggiunto alla biblioteca con successo, ecco alcune caratteristiche del libro: " + libro.toString() + "e quanto ci si mette a leggerlo " + libro.readingTime())
             }
+            Console.WriteLine("Cosa vuoi fare?");
+            Menu();
+            string scelta = "0";
+            while(scelta != "4")
+            {
+                scelta = Console.ReadLine();
+                switch(scelta)
+                {
+                    case "1":
+                        biblioteca.NumeroLibri();
+                        break;
+                    case "2":
+                        Console.Write("Inserisca il titolo per il quale si vuole cercare\n> ");
+                        string titolo = Console.ReadLine();
+                        biblioteca.RicercaPerTitolo(titolo);
+                        break;
+                    case "3":
+                        Console.Write("Inserire l'autore del quale si vogliono cercare i libri\n>");
+                        string autore = Console.ReadLine();
+                        List<Libro> libritrovati =
+                        libritrovati = biblioteca.RicercaPerAutore(autore);
+                        if(libritrovati.Count() == 0)
+                        {
+                            Console.WriteLine("Mi dispiace ma non abbiamo libri di questo autore in biblioteca")
+                        } else
+                        {
+                            Console.WriteLine("Libri trovati:");
+                            foreach(Libro libro in libritrovati)
+                            {
+                                Console.WriteLine(libro.toString())
+                            }
+                        }
+                        break;
+                    
+
+                }
+            }
+
             
         }
     }
