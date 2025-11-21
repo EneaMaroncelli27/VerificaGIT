@@ -29,7 +29,7 @@
             {
                 Console.Write("Inserisca un valore valido\n> ");
             }
-            for(int i = 0; i< numerolibri; i++)
+            for(int i = 0; i< numerolibri; i++) // Commento per fare il pull
             {
                 Console.Write("Inserisca l'autore del libro\n> ");
                 string nomelibro = Console.ReadLine();
